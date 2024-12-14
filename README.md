@@ -8,6 +8,7 @@ This project implements a simplified 5-axis slicing algorithm and generates G-co
 
 This code addresses the challenge of printing curved parts on a standard 3-axis FDM printer by simulating a 5-axis printing process. By rotating the printing plane during the print, the need for support structures can be eliminated for certain geometries. This project generates G-code that includes these rotational movements.
 ![image](https://github.com/user-attachments/assets/2fb1fb38-16f0-4dbf-99fc-1309ef098749)
+
 Reference of the Picture: https://doi.org/10.48550/arXiv.2202.11426
 ## Features
 
@@ -72,6 +73,4 @@ The generated G-code includes:
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
-## License
 
-[Choose a License - e.g., MIT License]
