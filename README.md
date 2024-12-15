@@ -1,4 +1,4 @@
-# G-code-generator-for-a-5-axis-printer
+# G-code-generator and Printing simulator of a 5-axis printer
 # 5-Axis Slicing for FDM 3D Printers (GNU Octave/MATLAB) - G-Code Generation
 ![Screenshot201632](https://github.com/user-attachments/assets/95ffe556-f8ff-4060-8a9c-9c90e08f55b3)
 
@@ -40,14 +40,17 @@ The process is as follows:
 4.  **G-Code Generation:** Creates a `.gcode` file containing the toolpaths, including linear movements (G1), rapid moves (G0), and B-axis rotations. The code also calculates and includes extrusion amounts (E values).
 
 ## Getting Started
-
+# To simulate the process of printing: 
 1.  **Prerequisites:** GNU Octave (or MATLAB).
 2.  **Clone the Repository:**
-3.  **Run the Code:** Open the `G-code-generator.m` file in Octave/MATLAB and run it. This will generate a file named `generated_gcode.gcode` in the same directory.
+3. **Run the Code:** Open `printing_process_visualizer.m` in MATLAB or Octave and run it.
+
+
+4.  **Run the Code:** Open the `G-code-generator.m` file in Octave/MATLAB and run it. This will generate a file named `generated_gcode.gcode` in the same directory.
 
 ## Code Structure
 
-*   The code is contained within a single `.m` file.
+*   The code is contained within two `.m` files.
 *   The code is structured into logical sections: input parameters, layer height optimization, elbow calculations, layer generation, and G-code writing.
 
 ## G-Code Output
@@ -59,7 +62,7 @@ The generated G-code includes:
 *   **B-Axis Rotations:** B commands for rotating the printing plane.
 *   **Extrusion:** E values for controlling the extruder.
 *   **Layer Comments:** Comments indicating the start of each layer.
-*   **Footer:** End of program command (M30).
+
 
 ## Important Considerations
 
@@ -67,10 +70,12 @@ The generated G-code includes:
 *   **Machine Compatibility:** The generated G-code may require adjustments depending on the specific 5-axis machine configuration. This code assumes a B-axis.
 *   **No Collision Detection:** There is no collision detection implemented in this code.
 
-
+![Screenshot192840](https://github.com/user-attachments/assets/bcc9583d-19ba-4ca4-bdbd-cfa8d064f288)
 
 ## Contributing
-
+## Output results: 
+![Screenshot 2024-12-10 233459](https://github.com/user-attachments/assets/02d91433-f7d8-4e54-a7c8-9554d0742ad0)
+![Screenshot 2024-12-10 232424](https://github.com/user-attachments/assets/fe1de620-b66c-49ba-b585-648c2d748086)
 Contributions are welcome! Please open an issue or submit a pull request.
 
 
