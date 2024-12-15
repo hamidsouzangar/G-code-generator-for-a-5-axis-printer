@@ -2,7 +2,7 @@
 # 5-Axis Slicing for FDM 3D Printers (GNU Octave/MATLAB) - G-Code Generation
 ![Screenshot201632](https://github.com/user-attachments/assets/95ffe556-f8ff-4060-8a9c-9c90e08f55b3)
 
-This project implements a simplified 5-axis slicing algorithm and generates G-code for a Cartesian FDM 3D printer with simulated B-axis (rotation around the Y-axis) capabilities. It's designed to allow printing of curved beams or similar geometries without the need for support structures. This version focuses on G-code generation.
+This project implements a simplified 5-axis slicing algorithm and generates G-code for a Cartesian FDM 3D printer with simulated B-axis (rotation around the Y-axis) capabilities. It's designed to allow printing of curved beams or similar geometries without the need for support structures. There are several solution to do so This code focus on solving the program based on constant layers' height method. 
 
 ## Project Overview
 
