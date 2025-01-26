@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>G-code-generator and Printing simulator of a 5-axis printer.md</title><style></style></head><body id="preview">
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Gcodegenerator_and_Printing_simulator_of_a_5axis_printer_0"></a>G-code-generator and Printing simulator of a 5-axis printer</h1>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="5Axis_Slicing_for_FDM_3D_Printers_GNU_OctaveMATLAB__GCode_Generation_1"></a>5-Axis Slicing for FDM 3D Printers (GNU Octave/MATLAB) - G-Code Generation</h2>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://github.com/user-attachments/assets/95ffe556-f8ff-4060-8a9c-9c90e08f55b3" alt="Screenshot201632"></p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">This project implements a simplified 5-axis slicing algorithm and generates G-code for a Cartesian FDM 3D printer with simulated B-axis (rotation around the Y-axis) capabilities. It’s designed to allow printing of curved beams or similar geometries without the need for support structures. There are several solution to do so This code focus on solving the program based on constant layers’ height method.</p>
+<h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Project_Overview_6"></a>Project Overview</h2>
+<p class="has-line-data" data-line-start="8" data-line-end="10">This code addresses the challenge of printing curved parts on a standard 3-axis FDM printer by simulating a 5-axis printing process. By rotating the printing plane during the print, the need for support structures can be eliminated for certain geometries. This project generates G-code that includes these rotational movements.<br>
+<img src="https://github.com/user-attachments/assets/2fb1fb38-16f0-4dbf-99fc-1309ef098749" alt="image"></p>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Reference of the Picture: <a href="https://doi.org/10.48550/arXiv.2202.11426">https://doi.org/10.48550/arXiv.2202.11426</a></p>
+<h2 class="code-line" data-line-start=12 data-line-end=13 ><a id="Features_12"></a>Features</h2>
+<ul>
+<li class="has-line-data" data-line-start="14" data-line-end="15"><strong>Simulated 5-Axis Slicing:</strong> Simulates the slicing of a part and generates toolpaths with rotational adjustments around the Y-axis (B-axis).</li>
+<li class="has-line-data" data-line-start="15" data-line-end="16"><strong>Layer Height Optimization:</strong> Optimizes layer height for both the straight and curved sections to ensure a consistent number of layers and minimize rounding errors.</li>
+<li class="has-line-data" data-line-start="16" data-line-end="17"><strong>G-Code Generation:</strong> Generates G-code that includes X, Y, Z movements and B-axis rotations.</li>
+<li class="has-line-data" data-line-start="17" data-line-end="18"><strong>Elbow Geometry Handling:</strong> Specifically designed to handle a geometry consisting of straight sections connected by a 90-degree elbow.</li>
+<li class="has-line-data" data-line-start="18" data-line-end="20"><strong>Adjusted Dimensions:</strong> Adjusts the dimensions of the square and elbow sections based on the layer height to ensure accurate final dimensions.</li>
+</ul>
+<h2 class="code-line" data-line-start=20 data-line-end=21 ><a id="How_It_Works_20"></a>How It Works</h2>
+<p class="has-line-data" data-line-start="22" data-line-end="23">The code takes the following inputs:</p>
+<ul>
+<li class="has-line-data" data-line-start="24" data-line-end="25"><code>H_of_layers</code>: Base layer height.</li>
+<li class="has-line-data" data-line-start="25" data-line-end="26"><code>Square_Side_dimansion</code>: Original side dimension of the square.</li>
+<li class="has-line-data" data-line-start="26" data-line-end="27"><code>Square_height</code>: Height of the square sections.</li>
+<li class="has-line-data" data-line-start="27" data-line-end="28"><code>Elbow_Degree</code>: Angle of the elbow (90 degrees in this example).</li>
+<li class="has-line-data" data-line-start="28" data-line-end="29"><code>R_1</code>: Inner radius of the elbow.</li>
+<li class="has-line-data" data-line-start="29" data-line-end="30"><code>R_2</code>: Outer radius of the elbow.</li>
+<li class="has-line-data" data-line-start="30" data-line-end="31"><code>offset</code>: Initial offset of the print bed.</li>
+<li class="has-line-data" data-line-start="31" data-line-end="32"><code>filament_diameter</code>: Diameter of the filament.</li>
+<li class="has-line-data" data-line-start="32" data-line-end="34"><code>nozzle_diameter</code>: Diameter of the nozzle.</li>
+</ul>
+<p class="has-line-data" data-line-start="34" data-line-end="35">The process is as follows:</p>
+<ol>
+<li class="has-line-data" data-line-start="36" data-line-end="37"><strong>Layer Height Optimization:</strong> Optimizes the layer height for the square and elbow sections.</li>
+<li class="has-line-data" data-line-start="37" data-line-end="38"><strong>Geometry Calculations:</strong> Calculates geometric parameters for the elbow, such as circumferences, angles, and the number of layers. The dimensions of the square and elbow are adjusted to account for the layer height.</li>
+<li class="has-line-data" data-line-start="38" data-line-end="39"><strong>Layer Generation and Rotation:</strong> Generates the vertices for each layer and calculates the rotation angle for the elbow layers.</li>
+<li class="has-line-data" data-line-start="39" data-line-end="41"><strong>G-Code Generation:</strong> Creates a <code>.gcode</code> file containing the toolpaths, including linear movements (G1), rapid moves (G0), and B-axis rotations. The code also calculates and includes extrusion amounts (E values).</li>
+</ol>
+<h2 class="code-line" data-line-start=41 data-line-end=42 ><a id="Getting_Started_41"></a>Getting Started</h2>
+<h1 class="code-line" data-line-start=42 data-line-end=43 ><a id="To_simulate_the_process_of_printing_42"></a>To simulate the process of printing:</h1>
+<ol>
+<li class="has-line-data" data-line-start="43" data-line-end="44"><strong>Prerequisites:</strong> GNU Octave (or MATLAB).</li>
+<li class="has-line-data" data-line-start="44" data-line-end="45"><strong>Clone the Repository:</strong></li>
+<li class="has-line-data" data-line-start="45" data-line-end="46"><strong>Run the Code:</strong> Open <code>printing_process_visualizer.m</code> in MATLAB or Octave and run it.</li>
+</ol>
+<ol start="4">
+<li class="has-line-data" data-line-start="48" data-line-end="50"><strong>Run the Code:</strong> Open the <code>G-code-generator.m</code> file in Octave/MATLAB and run it. This will generate a file named <code>generated_gcode.gcode</code> in the same directory.</li>
+</ol>
+<h2 class="code-line" data-line-start=50 data-line-end=51 ><a id="Code_Structure_50"></a>Code Structure</h2>
+<ul>
+<li class="has-line-data" data-line-start="52" data-line-end="53">The code is contained within two <code>.m</code> files.</li>
+<li class="has-line-data" data-line-start="53" data-line-end="55">The code is structured into logical sections: input parameters, layer height optimization, elbow calculations, layer generation, and G-code writing.</li>
+</ul>
+<h2 class="code-line" data-line-start=55 data-line-end=56 ><a id="GCode_Output_55"></a>G-Code Output</h2>
+<p class="has-line-data" data-line-start="57" data-line-end="58">The generated G-code includes:</p>
+<ul>
+<li class="has-line-data" data-line-start="59" data-line-end="60"><strong>Header:</strong> Contains comments with input parameters and setup commands (G21, G90).</li>
+<li class="has-line-data" data-line-start="60" data-line-end="61"><strong>Layer Movements:</strong> G0 and G1 commands for positioning the nozzle in X, Y, and Z.</li>
+<li class="has-line-data" data-line-start="61" data-line-end="62"><strong>B-Axis Rotations:</strong> B commands for rotating the printing plane.</li>
+<li class="has-line-data" data-line-start="62" data-line-end="63"><strong>Extrusion:</strong> E values for controlling the extruder.</li>
+<li class="has-line-data" data-line-start="63" data-line-end="64"><strong>Layer Comments:</strong> Comments indicating the start of each layer.</li>
+</ul>
+<h2 class="code-line" data-line-start=66 data-line-end=67 ><a id="Important_Considerations_66"></a>Important Considerations</h2>
+<ul>
+<li class="has-line-data" data-line-start="68" data-line-end="69"><strong>Elbow Approximation:</strong> The elbow is approximated by straight lines.</li>
+<li class="has-line-data" data-line-start="69" data-line-end="70"><strong>Machine Compatibility:</strong> The generated G-code may require adjustments depending on the specific 5-axis machine configuration. This code assumes a B-axis.</li>
+<li class="has-line-data" data-line-start="70" data-line-end="72"><strong>No Collision Detection:</strong> There is no collision detection implemented in this code.</li>
+</ul>
+<p class="has-line-data" data-line-start="72" data-line-end="73"><img src="https://github.com/user-attachments/assets/bcc9583d-19ba-4ca4-bdbd-cfa8d064f288" alt="Screenshot192840"></p>
+<h2 class="code-line" data-line-start=74 data-line-end=75 ><a id="Contributing_74"></a>Contributing</h2>
+<h2 class="code-line" data-line-start=75 data-line-end=76 ><a id="Output_results_75"></a>Output results:</h2>
+<p class="has-line-data" data-line-start="76" data-line-end="79"><img src="https://github.com/user-attachments/assets/02d91433-f7d8-4e54-a7c8-9554d0742ad0" alt="Screenshot 2024-12-10 233459"><br>
+<img src="https://github.com/user-attachments/assets/fe1de620-b66c-49ba-b585-648c2d748086" alt="Screenshot 2024-12-10 232424"><br>
+Contributions are welcome! Please open an issue or submit a pull request.</p>
+
+</body></html>
