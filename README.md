@@ -1,4 +1,6 @@
 # G-code-generator and Printing simulator of a 5-axis printer
+![octave-gui_kppVYGOOGi](https://github.com/user-attachments/assets/650b04e2-e81e-41a7-a59f-f4d4f625abdb)
+
 ## 5-Axis Slicing for FDM 3D Printers (GNU Octave/MATLAB) - G-Code Generation
 ![Screenshot201632](https://github.com/user-attachments/assets/95ffe556-f8ff-4060-8a9c-9c90e08f55b3)
 
